@@ -63,6 +63,7 @@ if(isset($_POST['form_id'])) {
 <body id="main_body" >
 
 <img id="top" src="img/top.png" alt="">
+<img style="position: absolute; margin-left: 100px; width: 189px;" src="img/logo%20fedesipa.png">
 <div id="form_container">
 
     <h1><a>Adicionar Associado</a></h1>
@@ -207,7 +208,7 @@ if(isset($_POST['form_id'])) {
             <li class="buttons">
                 <input type="hidden" name="form_id" value="1044499" />
 
-                <input id="saveForm" class="button_text" type="submit" name="submit" value="Cadastar" />
+                <input id="saveForm" class="button_text" type="submit" name="submit" value="Cadastrar" />
             </li>
         </ul>
     </form>
