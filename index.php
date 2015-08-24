@@ -23,8 +23,10 @@
 
 <ul>
     <li id="li_1">
+        <input type="button" value="Consultar Associado" size="30" onclick="window.location='consulta/index.php';" style="width: 200px;">
+    </li>
+    <li id="li_1">
         <input type="button" value="Adicionar Associado" size="30" onclick="window.location='addassociado.php';" style="width: 200px;">
-
     </li>
     <li id="li_2">
         <input type="button" value="Adicionar Dependentes " size="30" style="width: 200px;" >

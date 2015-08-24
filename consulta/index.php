@@ -2,20 +2,28 @@
 /**
  * Created by PhpStorm.
  * User: Anderson
- * Date: 23/08/2015
- * Time: 04:57
+ * Date: 24/08/2015
+ * Time: 01:59
+ * echo var_dump($_GET['C_rg']);
+ * echo var_dump($_GET['C_registro']);
  */
-include "../conection.inc";
 
-$sql = "SELECT * FROM associados";
+include "../conection.inc";
+if(isset($_GET['C_rg'])) {
+    if($_GET['C_rg'] != 0){
+    $vassociadorg = $_GET['C_rg'];}else { $vassociadorg = 0;}
+if($_GET['C_registro'] != 0){
+    $vassociadoregistro = $_GET['C_registro'];} else{$vassociadoregistro = 0;}
+    $sql = "SELECT * FROM associados WHERE rg = ".@$vassociadorg." OR registro = ".@$vassociadoregistro ;
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>FEDESIPA - PAINEL DE CONTROLE</title>
+    <title>FEDESIPA 4 - PAINEL DE CONTROLE</title>
     <link rel="stylesheet" type="text/css" href="../css/view.css" media="all">
-
     <script type="text/javascript" src="../js/view.js"></script>
     <script type="text/javascript" src="../js/calendar.js"></script>
     <style>
@@ -30,29 +38,42 @@ $sql = "SELECT * FROM associados";
 <div id="form_container">
 
     <h1><a>Fedesipa SisCad</a></h1>
-    <form id="form_1044499" class="appnitro"  method="post" action="">
+    <form id="form_1044499" class="appnitro"  method="get" action="">
         <div class="form_description">
-            <h2> Painel de Controle</h2>
-            <p>Lista de Associados.</p>
+            <h2> Painel de Consulta</h2>
+            <p> Area do parceiro.</p>
         </div>
+        <ul><li>
+            <li id="li_1" >
+                <label class="description" for="element_1">Consulta</label>
+		<span>
+			<input id="element_1_1" name="C_rg" class="element text"  maxlength="255" size="18" placeholder="RG" value="<?php @$_GET['C_rg'] ?>"/>
+			<input type="number" id="registro" name="C_registro" placeholder="Cartão Fedesipa" >
+<!-- Nome   <input type="number" id="registro" name="C_registro" placeholder="Cartão Fedesipa"> -->
+            <input type="submit" value="Consultar">
+            <label>Somete  numeros</label>
+            </li>
+        </ul>
         <div class="datagrid">
             <?php
-        if($query = mysqli_query($com, $sql))
-        {$linhas = 1;
-            $rows = mysqli_num_rows($query);
-            echo "Total de Associados: ".$rows. "  "."Total Ativo: ".$totalAtivos;
+            if(isset($_GET['C_rg']) || isset($_GET['C_registro']) ) {
+            if($query = mysqli_query($com, $sql))
+            {$linhas = 1;
+                $rows = mysqli_num_rows($query);
+                if($rows > 0){
+                echo "<table><thead><tr><th>Nome</th><th>Status</th><th>Nº Cartão</th><th>Dependentes</th></tr></thead>";
+                while($assoc = mysqli_fetch_assoc($query))
+                {
+                    echo    "<tbody><tr><td>".$assoc['nome']."</td><td>".status($assoc['status'])."</td><td>".$assoc['registro']."</td><td>".depedentes(0)." dependente</td></tr></tbody>";
+                }
+                echo "</table>";}else{echo "Associado não encontrado";}
 
-echo "<table><thead><tr><th>Nome</th><th>Status</th><th>Nº Cartão</th><th>Dep</th><th>Mensalidades</th><th>Editar</th></tr></thead>";
-        while($assoc = mysqli_fetch_assoc($query))
-        {
-      echo    "<tbody><tr><td>".$assoc['nome']."</td><td>".status($assoc['status'])."</td><td>".$assoc['registro']."</td><td>".depedentes(0)."</td><td>"."<a href='#'>Mensalidades</a>"."</td><td>"."<a href='#'>Atualizar</a>"."</td></tr></tbody>";
-        }
-echo "</table>";
-
-        }
-        mysqli_close($com);
-?>
+            }}
+            mysqli_close($com);
+            ?>
         </div>
+
+
         <div id="footer">
     </div>
     </form>
