@@ -31,7 +31,7 @@
     </li>
     <li id="l1_3">
     <li id="l1_6">
-        <input type="button" value="Lista de associados " size="30" style="width: 200px;">
+        <input type="button" value="Lista de associados " size="30" style="width: 200px;" onclick="window.location='view/listadeassociados.php';">
     </li>
     <li id="l1_4">
         <input type="button" value="Mensalidades " size="30" style="width: 200px;">
