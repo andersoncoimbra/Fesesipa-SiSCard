@@ -27,11 +27,12 @@ if(isset($_POST['F_nome']) && isset($_POST['F_registro'])) {
     {
     $vmae = $_POST['F_mae']." ".$_POST['F_mae2'];
     }else { $vmae = "Mae nao infomada";}
+    $vstatus = $_POST['F_status'];
 }
 if(isset($_POST['form_id'])) {
     $insert = "INSERT INTO associados VALUES (NULL, '$vnome','$vregistro','$vdatanasc','$vsexo',
                                                '$vcpf','$vrg','$vend','$vbairro','$vcidade',
-                                                   '$vcep','$vtelefone','$vemail','$vmae')";
+                                                   '$vcep','$vtelefone','$vemail','$vmae','$vstatus')";
     $select = "SELECT * FROM associados";
     $queryb = mysqli_query($com, $select);
     $query = mysqli_query($com, $insert);
@@ -203,6 +204,16 @@ if(isset($_POST['form_id'])) {
 			<input id="element_9_2" name= "F_mae2" class="element text" maxlength="15" size="14" value=""/>
 			<label>Ultimo nome</label>
 		</span>
+            </li>
+            <li id="li_10" >
+                <label class="description" for="element_10">Status </label>
+                <div>
+                    <select class="element select medium" id="element_10" name="F_status" required>
+                        <option value="1" >Ativo</option>
+                        <option value="0" selected="selected">Inativo</option>
+
+                    </select>
+                </div>
             </li>
 
             <li class="buttons">

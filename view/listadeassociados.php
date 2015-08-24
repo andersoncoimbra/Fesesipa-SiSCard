@@ -65,8 +65,7 @@ function depedentes($dep){
 echo "<table><thead><tr><th>Nome</th><th>Status</th><th>Nº Cartão</th><th>Dep</th><th>Mensalidades</th><th>Editar</th></tr></thead>";
         while($assoc = mysqli_fetch_assoc($query))
         {
-      //  echo " - ".$assoc['sexo']."</br>";
-        echo    "<tbody><tr><td>".$assoc['nome']."</td><td>".status($assoc['status'])."</td><td>".$assoc['registro']."</td><td>".depedentes(0)."</td><td>"."<a href='#'>Mensalidades</a>"."</td><td>"."<a href='#'>Atualizar</a>"."</td></tr></tbody>";
+      echo    "<tbody><tr><td>".$assoc['nome']."</td><td>".status($assoc['status'])."</td><td>".$assoc['registro']."</td><td>".depedentes(0)."</td><td>"."<a href='#'>Mensalidades</a>"."</td><td>"."<a href='#'>Atualizar</a>"."</td></tr></tbody>";
         }
 echo "</table>";
 
