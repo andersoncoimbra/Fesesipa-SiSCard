@@ -18,6 +18,20 @@ $sqlStatus = "SELECT * FROM associados WHERE status = 1";
 $selectStatus = mysqli_query($com,$sqlStatus);
 $totalAtivos = mysqli_num_rows($selectStatus);
 
+////////////////
+//Total Usuarios
+///////////////
+$sqlUsers = "SELECT * FROM usuarios";
+$selectUsers = mysqli_query($com,$sqlUsers);
+$totalUsers = mysqli_num_rows($selectUsers);
+
+////////////////
+//Total Usuarios Ativos
+///////////////
+$sqlUsersAtv = "SELECT * FROM usuarios WHERE status = 1";
+$selectUsersAtv = mysqli_query($com,$sqlUsersAtv);
+$totalUsersAtv = mysqli_num_rows($selectUsersAtv);
+
 ////////////////////////////////
 //Verefique o status do associado
 ///////////////////////////////
@@ -32,6 +46,22 @@ function status($status){
         return "Inativo";
     }
 }
+////////////////////////////////
+//Verefique o numero de depedente
+///////////////////////////////
 function depedentes($dep){
     return $dep;
 }
+////////////////////////////////
+//Verefique o nivel do usuario
+///////////////////////////////
+function nivel($nivel){
+    switch($nivel){
+        case 1:
+            return "Parceiro";
+            break;
+        case 5:
+            return "Administrador";
+            break;
+    }
+    }
