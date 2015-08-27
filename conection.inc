@@ -53,7 +53,7 @@ function depedentes($dep){
     return $dep;
 }
 ////////////////////////////////
-//Verefique o nivel do usuario
+//Indentifica o nivel do usuario
 ///////////////////////////////
 function nivel($nivel){
     switch($nivel){
@@ -65,3 +65,17 @@ function nivel($nivel){
             break;
     }
     }
+////////////////////////////////
+//Verefica as credencias do usuario
+///////////////////////////////
+function isUser($user, $senha){
+
+    $sqlIsUsers = "SELECT * FROM usuarios WHERE username = '$user' AND senha = '$senha'";
+    $selectisUsers = mysqli_query(mysqli_connect("localhost","root","","fedesipa"),$sqlIsUsers); //Troca para acesso do servidor
+      $IsUser = mysqli_num_rows($selectisUsers);
+    if($IsUser == 1){
+        return true;
+    }else{
+        return false;
+    }
+}
