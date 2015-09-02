@@ -8,8 +8,13 @@
  * $com = mysqli_connect("localhost","parasite_fedesip","fedesipa");
  * mysqli_select_db($com, "parasite_fedesipa");
  */
-$com = mysqli_connect("localhost","root","");
-mysqli_select_db($com, "fedesipa");
+define('HOST','localhost');
+define('USER','root');
+define('PASS','');
+define('BD','fedesipa');
+
+$com = mysqli_connect(HOST,USER,PASS);
+mysqli_select_db($com, BD);
 
 ////////////////
 //Total Ativos
@@ -71,11 +76,69 @@ function nivel($nivel){
 function isUser($user, $senha){
 
     $sqlIsUsers = "SELECT * FROM usuarios WHERE username = '$user' AND senha = '$senha'";
-    $selectisUsers = mysqli_query(mysqli_connect("localhost","root","","fedesipa"),$sqlIsUsers); //Troca para acesso do servidor
+    $selectisUsers = mysqli_query(mysqli_connect(HOST,USER,PASS,BD),$sqlIsUsers); //Troca para acesso do servidor
       $IsUser = mysqli_num_rows($selectisUsers);
     if($IsUser == 1){
         return true;
     }else{
         return false;
     }
+}
+////////////////////////////////
+//Verefica o tipo de usuario
+///////////////////////////////
+function userType($user, $senha){
+    $sqlUserType = "SELECT * FROM usuarios WHERE username ='$user' AND senha = '$senha'";
+    $queryUserType = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqlUserType);
+    $userType = mysqli_num_rows($queryUserType);
+    $usernivel = mysqli_fetch_assoc($queryUserType);
+    switch($usernivel['nivel']){
+        case 1:
+            return 1;
+        break;
+        default:
+            return 5;
+    }
+}
+////////////////////////////////
+//Identica se é um associado pelo RG
+///////////////////////////////
+function isAssoc($rg){
+    $sqlAssocId = "SELECT * FROM associados WHERE rg = '$rg'";
+    $queryRgToId = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqlAssocId);
+  //$getAssoc = mysqli_fetch_assoc($queryRgToId);
+    $getRes = mysqli_num_rows($queryRgToId);
+    if($getRes == 1){
+        return true;
+    }else{return false;}
+
+}
+////////////////////////////////
+//Identica o id do associado pelo RG
+///////////////////////////////
+function rgToid($rg){
+    $sqlAssocId = "SELECT * FROM associados WHERE rg = '$rg'";
+    $queryRgToId = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqlAssocId);
+    $getAssoc = mysqli_fetch_assoc($queryRgToId);
+    return $getAssoc['associados_ID'];
+}
+////////////////////////////////
+// Lista os depedente de um associado pelo rg
+///////////////////////////////
+function getDep($rg){
+    $sqldep = "SELECT * FROM parentesco WHERE id_associado = '".rgToid($rg)."'";
+    //$queryRgToId = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqldep);
+echo " <div class='datagrid'>";
+    if($query = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqldep))
+    {
+
+        echo "<table><thead><tr><th>ID</th><th>Nome</th><th>Parentesco</th><th>Editar</th></tr></thead>";
+        while($assoc = mysqli_fetch_assoc($query))
+        {
+            echo    "<tbody><tr><td>".$assoc['id']."</td><td>".$assoc['nome']."</td><td>".$assoc['parentesco']."</td><td>"."<a href='#'>Atualizar</a>"."</td></tr></tbody>";
+        }
+        echo "</table> </div>";
+
+    }
+
 }

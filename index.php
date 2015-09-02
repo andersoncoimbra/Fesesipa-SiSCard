@@ -12,7 +12,13 @@ if(isset($_POST['login_id'])){
 
     if(isUser($l_login, $l_senha)){
         $acesso = "<p style='color: greenyellow;'>Acesso Permitido</p>";
-        header("Location: dashboard.php"); exit;
+        if(userType($l_login, $l_senha) > 1) {
+            header("Location: dashboard.php");
+            exit;
+        }else{
+            header("Location: consulta/index.php");
+            exit;
+        }
     }else{
         $acesso = "<p style='color: red;'>Acesso Negado</p>";
     }

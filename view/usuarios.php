@@ -57,7 +57,7 @@ $sqluser = "SELECT * FROM usuarios";
 
                 echo "<table><thead><tr><th>Nome</th><th>Tipo</th><th>Status</th><th>Username</th><th>Editar</th></tr></thead>";
                 while ($assoc = mysqli_fetch_assoc($query)) {
-                    echo "<tbody><tr><td>" . $assoc['nome'] . "</td><td>" . nivel($assoc['nivel']) . "</td><td>" . status($assoc['status']) . "</td><td>" . $assoc['user'] . "</td><td>" . "<a href='#'>Atualizar</a>" . "</td></tr></tbody>";
+                    echo "<tbody><tr><td>" . $assoc['nome'] . "</td><td>" . nivel($assoc['nivel']) . "</td><td>" . status($assoc['status']) . "</td><td>" . $assoc['username'] . "</td><td>" . "<a href='#'>Atualizar</a>" . "</td></tr></tbody>";
                 }
                 echo "</table>";
                 echo "</div>";

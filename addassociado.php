@@ -92,7 +92,8 @@ if(isset($_POST['form_id'])) {
                 <div>
                     <input id="element_2" name="F_registro" class="element text medium" type="text" maxlength="255" value="" required/>
                 </div>
-            </li>		<li id="li_3" >
+            </li>
+            <li id="li_3" >
                 <label class="description" for="element_3">Data de nascimento </label>
 		<span>
             <input id="element_3_2" name="F_datanasc" class="element text" size="2" maxlength="2" value="" type="number"> /

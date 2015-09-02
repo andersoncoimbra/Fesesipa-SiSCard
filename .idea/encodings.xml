@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/addassociado.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consulta/index.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/view/addDependente.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/view/addusuario.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/view/listadeassociados.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/view/usuarios.php" charset="UTF-8" />
