@@ -114,9 +114,20 @@ if(isAssoc(@$_GET['D_assoc'])){
                         <option value='Mâe' >Mae</option>
                         <option value='Pai' selected='selected'>PAI</option>
                         <option value='Filho' >Filho</option>
-                        <option value='Filha' selected='selected'>Filha</option>
+                        <option value='Filha'>Filha</option>
                         <option value='Sobrinho' >Sobrinho</option>
-                        <option value='Tio' selected='selected'>Tio</option>
+                        <option value='Sobrinha' >Sobrinha</option>
+                        <option value='Tio' >Tio</option>
+                        <option value='Tia' >Tio</option>
+                        <option value='Marido' >Marido</option>
+                        <option value='Esposa' >Esposa</option>
+                        <option value='Irmão' >Irmão</option>
+                        <option value='Irmã' >Irmã</option>
+                        <option value='Primo' >Primo</option>
+                        <option value='Prima' >Prima</option>
+                        <option value='Sogro' >Sogro</option>
+                        <option value='Sogra' >Sogra</option>
+                        <option value='Outros' >Outros</option>
 
                     </select>
                 </div>
