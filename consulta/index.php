@@ -66,9 +66,19 @@ if($_GET['C_registro'] != 0){
                 {
                     echo    "<tbody><tr><td>".$assoc['nome']."</td><td>".status($assoc['status'])."</td><td>".$assoc['registro']."</td><td>".depedentes(0)." dependente</td></tr></tbody>";
                 }
-                echo "</table>";}else{echo "Associado não encontrado";}
+                echo "</table><br></div>";
+                
+                echo "<h2> Dependentes</h2> <br>";
+                
+                getDep($_GET['C_rg']);
+                
+                }else{echo "Associado não encontrado";}
 
             }}
+            
+            
+            
+            
             mysqli_close($com);
             ?>
         </div>

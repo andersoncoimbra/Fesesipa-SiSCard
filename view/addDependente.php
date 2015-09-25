@@ -65,6 +65,8 @@ if(isset($_POST['form_id'])) {
         <?php
 if(isAssoc(@$_GET['D_assoc'])){
 
+    getAssoc($_GET['D_assoc']);
+    echo "<br>";
     getDep($_GET['D_assoc']);
 
        print("
@@ -121,14 +123,13 @@ if(isAssoc(@$_GET['D_assoc'])){
                         <option value='Tia' >Tio</option>
                         <option value='Marido' >Marido</option>
                         <option value='Esposa' >Esposa</option>
-                        <option value='Irmão' >Irmão</option>
-                        <option value='Irmã' >Irmã</option>
-                        <option value='Primo' >Primo</option>
-                        <option value='Prima' >Prima</option>
-                        <option value='Sogro' >Sogro</option>
-                        <option value='Sogra' >Sogra</option>
-                        <option value='Outros' >Outros</option>
-
+                        <option value='Irmão' >Irmão</option>       
+                        <option value='Irmã' >Irmã</option>  
+                        <option value='Primo' >Primo</option>  
+                        <option value='Prima' >Prima</option>                                                                                   
+                        <option value='Sogro' >Sogro</option>     
+                        <option value='Sogra' >Sogra</option>  
+                        <option value='Outros' >Outros</option>                                                                 
                     </select>
                 </div>
             </li>

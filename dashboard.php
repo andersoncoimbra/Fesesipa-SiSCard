@@ -29,7 +29,7 @@
                 <input type="button" value="Adicionar Associado" size="30" onclick="window.location='addassociado.php';" style="width: 200px;">
             </li>
             <li id="li_2">
-                <input type="button" value="Adicionar Dependentes" size="30" style="width: 200px;" onclick="window.location='view/addDependente.php'">
+                <input type="button" value="Adicionar Dependentes" size="30" style="width: 200px;" onclick="window.location='view/addDependente.php';">
             </li>
             <li id="l1_3">
             <li id="l1_6">

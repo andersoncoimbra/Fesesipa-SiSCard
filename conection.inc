@@ -7,7 +7,19 @@
  *
  * $com = mysqli_connect("localhost","parasite_fedesip","fedesipa");
  * mysqli_select_db($com, "parasite_fedesipa");
- */
+
+define('HOST','localhost');
+define('USER','parasite_fedesip');
+define('PASS','fedesipa');
+define('BD','parasite_fedesipa');
+
+$com = mysqli_connect(HOST,USER,PASS);
+mysqli_select_db($com, BD);
+
+$com = mysqli_connect("localhost","root","");
+mysqli_select_db($com, "fedesipa");
+*/
+
 define('HOST','localhost');
 define('USER','root');
 define('PASS','');
@@ -15,6 +27,9 @@ define('BD','fedesipa');
 
 $com = mysqli_connect(HOST,USER,PASS);
 mysqli_select_db($com, BD);
+
+
+
 
 ////////////////
 //Total Ativos
@@ -54,8 +69,13 @@ function status($status){
 ////////////////////////////////
 //Verefique o numero de depedente
 ///////////////////////////////
-function depedentes($dep){
-    return $dep;
+function depedentes($rg){
+    $sqlnumdep = "SELECT * FROM parentesco WHERE id_associado = '".rgToid($rg)."'";
+
+    $querynumdep = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqlnumdep);
+    $numdep = mysqli_num_rows($querynumdep);
+
+    return $numdep;
 }
 ////////////////////////////////
 //Indentifica o nivel do usuario
@@ -132,10 +152,28 @@ echo " <div class='datagrid'>";
     if($query = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqldep))
     {
 
-        echo "<table><thead><tr><th>ID</th><th>Nome</th><th>Parentesco</th><th>Editar</th></tr></thead>";
+        echo "<table><thead><tr><th>ID</th><th>Nome</th><th>Parentesco</th></tr></thead>";
         while($assoc = mysqli_fetch_assoc($query))
         {
-            echo    "<tbody><tr><td>".$assoc['id']."</td><td>".$assoc['nome']."</td><td>".$assoc['parentesco']."</td><td>"."<a href='#'>Atualizar</a>"."</td></tr></tbody>";
+            echo    "<tbody><tr><td>".$assoc['id']."</td><td>".$assoc['nome']."</td><td>".$assoc['parentesco']."</td></tr></tbody>";
+        }
+        echo "</table> </div>";
+
+    }
+
+}
+
+function getAssoc($rg){
+    $sqlassoc = "SELECT * FROM associados WHERE rg = '$rg'";
+    //$queryRgToId = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqldep);
+    echo " <div class='datagrid'>";
+    if($query = mysqli_query(mysqli_connect(HOST,USER,PASS,BD), $sqlassoc))
+    {
+
+        echo "<table><thead><tr><th>Titular</th><th>Status</th><th>Registro</th><th>Dependentes</th></tr></thead>";
+        while($assoc = mysqli_fetch_assoc($query))
+        {
+            echo    "<tbody><tr><td>".$assoc['nome']."</td><td>".status($assoc['status'])."</td><td>".$assoc['registro']."</td><td>".depedentes($assoc['rg'])."</td></tr></tbody>";
         }
         echo "</table> </div>";
 
